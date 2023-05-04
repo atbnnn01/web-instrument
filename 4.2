@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="row p-2" style="justify-content: center;">
+        <div class="col-6">
+            <div class="row mb-2">
+                <input id="panelOutput" class="form-control" />
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-3 pr-1">
+                    <button class="btn btn-primary w-100" onclick="onBtnNumClick(this)">7</button>
+                </div>
+
+                <div class="col-3 pr-1 pl-1">
+                    <button class="btn btn-primary w-100" onclick="onBtnNumClick(this)">8</button>
+                </div>
+
+                <div class="col-3 pr-1 pl-1">
+                    <button class="btn btn-primary w-100" onclick="onBtnNumClick(this)">9</button>
+                </div>
+
+                <div class="col-3 pl-1">
+                    <button class="btn btn-primary w-100" style="background-color: orange; border-color: orange;"
+                        onclick="onBtnOperationClick(this)">X</button>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                <div class="col-3 pr-1">
+                    <button class="btn btn-primary w-100" onclick="onBtnNumClick(this)">4</button>
+                </div>
+
+                <div class="col-3 pr-1 pl-1">
+                    <button class="btn btn-primary w-100" onclick="onBtnNumClick(this)">5</button>
+                </div>
+
+                <div class="col-3 pr-1 pl-1">
+                    <button class="btn btn-primary w-100" onclick="onBtnNumClick(this)">6</button>
+                </div>
+
+                <div class="col-3 pl-1">
+                    <button class="btn btn-primary w-100" style="background-color: orange; border-color: orange;"
+                        onclick="onBtnOperationClick(this)">/</button>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-3 pr-1">
+                    <button class="btn btn-primary w-100" onclick="onBtnNumClick(this)">1</button>
+                </div>
+
+                <div class="col-3 pr-1 pl-1">
+                    <button class="btn btn-primary w-100" onclick="onBtnNumClick(this)">2</button>
+                </div>
+
+                <div class="col-3 pr-1 pl-1">
+                    <button class="btn btn-primary w-100" onclick="onBtnNumClick(this)">3</button>
+                </div>
+
+                <div class="col-3 pl-1">
+                    <button class="btn btn-primary w-100" style="background-color: orange; border-color: orange;"
+                        onclick="onBtnOperationClick(this)">+</button>
+                </div>
+            </div>
+            
+            
+
+            <div class="row mb-2">
+                <div class="col-6 pr-1">
+                    <button class="btn btn-primary w-100" onclick="onBtnNumClick(this)">0</button>
+                </div>
+
+                <div class="col-3 pr-1">
+                    <button class="btn btn-primary w-100" onclick="onBtnNumClick(this)">.</button>
+                </div>
+
+                <div class="col-3 pl-1">
+                    <button class="btn btn-primary w-100" style="background-color: orange; border-color: orange;"
+                    onclick="onBtnOperationClick(this)">-</button>
+                </div>
+            </div>
+
+            <div class="row mb-2">
+                
+                <div class="col-9 pr-1 ">
+                    <button class="btn btn-primary w-100" style = "background-color: rgb(255, 0, 0); border-color: rgb(255, 0, 0);" onclick="onBtnOperationClick(this)">C</button>
+                </div>
+
+                <div class="col-3 pl-1">
+                    <button class="btn btn-primary w-100" style="background-color: orange; border-color: orange;"
+                        onclick="onBtnRezClick(this)">=</button>
+                </div>
+            
+            </div>
+        </div>
+
+
+        <style>
+            .row>* {
+                padding: 0;
+                margin: 0;
+            }
+        </style>
+
+        <script>
+            function onBtnNumClick(btn) {
+                var textField = document.getElementById("panelOutput");
+                var valu = btn.innerHTML
+                
+                textField.value = textField.value + valu
+                // console.log(valu)
+            }
+
+            var savedVal = 0
+            var sign = ''
+
+            function calc(a, b, znak) {
+                c = 0
+                if (znak == "+") {
+                    c = a + b
+                } else {
+                    if (znak == "-") {
+                        c = a - b
+                    }
+                    else {
+                        if (znak == "X") {
+                            c = a * b
+                        }
+                        else {
+                            if (znak == "/") {
+                                c = a / b
+                            }
+                        }
+                    }
+                }
+                if (znak == "C") {
+                    c = 0
+                }
+                return c
+            }
+
+
+            function onBtnRezClick(btn) {              
+                
+                
+                var panelOutput = document.getElementById("panelOutput");
+                a = savedVal
+                b = parseFloat(panelOutput.value)
+                panelOutput.value = calc(a,b,sign) 
+                //var valu = btn.innerHTML
+
+            }
+
+            function onBtnOperationClick(btn) {
+                var textField = document.getElementById("panelOutput");
+                sign = btn.innerHTML
+                savedVal=parseFloat(textField.value)
+                console.log(savedVal)
+                textField.value = ''
+            }
+
+
+        </script>
+
+
+
+
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+</body>
+
+</html>
